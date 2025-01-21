@@ -22,12 +22,18 @@ function Page() {
   useEffect(() => {
     if (id && isInstagram) {
       window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;end`;
-    } else if (isAndroid) {
-      window.location.href = `https://play.google.com/store/apps/details?id=com.kookxtra.kx&pli=1`;
-    } else if (isIOS) {
-      window.location.href = `https://apps.apple.com/tt/app/kookxtra/id1597903577`;
+    } else {
+      if (isAndroid) {
+        window.location.href = `https://play.google.com/store/apps/details?id=com.kookxtra.kx&pli=1`;
+      } else if (isIOS) {
+        window.location.href = `https://apps.apple.com/tt/app/kookxtra/id1597903577`;
+      }
     }
   }, [id, isInstagram, isAndroid, isIOS]);
+
+  if (!isInstagram) {
+    return <div></div>;
+  }
 
   return (
     <div>
@@ -36,7 +42,6 @@ function Page() {
       {isInstagram && <p>Opening from Instagram...</p>}
       {isAndroid && <p>Android device detected</p>}
       {isIOS && <p>iOS device detected</p>}
-      
     </div>
   );
 }
