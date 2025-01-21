@@ -22,13 +22,11 @@ function Page() {
   function handleReLaunch() {
     try {
       if (isAndroid) {
-        // Set up a timeout to detect intent failure
         const timeout = setTimeout(() => {
           window.location.href =
             'https://play.google.com/store/apps/details?id=com.kookxtra.kx';
         }, 2500); // 2.5 seconds timeout
 
-        // Try to launch the app
         window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
 
         return () => clearTimeout(timeout);
@@ -57,12 +55,19 @@ function Page() {
     }
   }, [id, isInstagram, isAndroid, isIOS]);
 
-  if (!isInstagram) {
-    return <div></div>;
-  }
+  //   if (!isInstagram) {
+  //     return <div></div>;
+  //   }
 
   return (
     <div>
+      <img
+        src='https://i.gifer.com/ZKZg.gif'
+        alt='logo'
+        width={50}
+        height={50}
+        className='w-6 h-6'
+      />
       <p>Redirecting...</p>
       <button onClick={handleReLaunch}>Re-Launch</button>
       {isInstagram && <p>Opening from Instagram...</p>}
