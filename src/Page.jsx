@@ -25,9 +25,9 @@ function Page() {
         const timeout = setTimeout(() => {
           window.location.href =
             'https://play.google.com/store/apps/details?id=com.kookxtra.kx';
-        }, 2500); // 2.5 seconds timeout
+        }, 1000); 
 
-        window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
+        window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;end`;
 
         return () => clearTimeout(timeout);
       } else if (isIOS) {
@@ -60,14 +60,16 @@ function Page() {
   //   }
 
   return (
-    <div>
-      <img
-        src='https://i.gifer.com/ZKZg.gif'
-        alt='logo'
-        width={50}
-        height={50}
-        className='w-6 h-6'
-      />
+    <div className='flex flex-col items-center justify-center'>
+      <div className='w-12'>
+        <img
+          src='https://i.gifer.com/ZKZg.gif'
+          alt='logo'
+          width={50}
+          height={50}
+          className='w-6 h-6'
+        />
+      </div>
       <p>Redirecting...</p>
       <button onClick={handleReLaunch}>Re-Launch</button>
       {isInstagram && <p>Opening from Instagram...</p>}
