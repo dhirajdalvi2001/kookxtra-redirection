@@ -31,6 +31,10 @@ function Page() {
     }
   }, [id, isInstagram, isAndroid, isIOS]);
 
+  function handleReLaunch() {
+    window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
+  }
+
   if (!isInstagram) {
     return <div></div>;
   }
@@ -38,7 +42,7 @@ function Page() {
   return (
     <div>
       <p>Redirecting...</p>
-      <button>Re-Launch</button>
+      <button onClick={handleReLaunch}>Re-Launch</button>
       {isInstagram && <p>Opening from Instagram...</p>}
       {isAndroid && <p>Android device detected</p>}
       {isIOS && <p>iOS device detected</p>}
