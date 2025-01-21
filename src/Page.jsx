@@ -22,14 +22,7 @@ function Page() {
   function handleReLaunch() {
     try {
       if (isAndroid) {
-        // const timeout = setTimeout(() => {
-        //   window.location.href =
-        //     'https://play.google.com/store/apps/details?id=com.kookxtra.kx';
-        // }, 1000);
-
         window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;end`;
-
-        // return () => clearTimeout(timeout);
       } else if (isIOS) {
         window.location.href = `https://apps.apple.com/tt/app/kookxtra/id1597903577`;
       }
@@ -55,9 +48,9 @@ function Page() {
     }
   }, [id, isInstagram, isAndroid, isIOS]);
 
-  //   if (!isInstagram) {
-  //     return <div></div>;
-  //   }
+    if (!isInstagram) {
+      return <div></div>;
+    }
 
   return (
     <div className='flex flex-col items-center justify-center'>
