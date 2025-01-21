@@ -21,7 +21,7 @@ function Page() {
 
   useEffect(() => {
     if (id && isInstagram) {
-      window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;end`;
+      window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
     } else {
       if (isAndroid) {
         window.location.href = `https://play.google.com/store/apps/details?id=com.kookxtra.kx&pli=1`;
