@@ -21,10 +21,11 @@ function Page() {
 
   function handleReLaunch() {
     try {
-      // Try to launch app with intent URL
-      window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;S.browser_fallback_url=${encodeURIComponent(isAndroid 
-        ? 'https://play.google.com/store/apps/details?id=com.kookxtra.kx&pli=1'
-        : 'https://apps.apple.com/tt/app/kookxtra/id1597903577')};end`;
+      if (isAndroid) {
+        window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.kookxtra.kx;end`;
+      } else if (isIOS) {
+        window.location.href = `https://apps.apple.com/tt/app/kookxtra/id1597903577`;
+      }
     } catch (error) {
       console.error('Error launching app:', error);
       if (isAndroid) {
