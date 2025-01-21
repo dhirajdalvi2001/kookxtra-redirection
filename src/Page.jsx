@@ -19,9 +19,22 @@ function Page() {
   console.log('Is iOS:', isIOS);
   console.log('ID:', id);
 
+  function handleReLaunch() {
+    try {
+      window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
+    } catch (error) {
+      console.error('Error launching app:', error);
+      if (isAndroid) {
+        window.location.href = `https://play.google.com/store/apps/details?id=com.kookxtra.kx&pli=1`;
+      } else if (isIOS) {
+        window.location.href = `https://apps.apple.com/tt/app/kookxtra/id1597903577`;
+      }
+    }
+  }
+
   useEffect(() => {
     if (id && isInstagram) {
-      window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
+      handleReLaunch();
     } else {
       if (isAndroid) {
         window.location.href = `https://play.google.com/store/apps/details?id=com.kookxtra.kx&pli=1`;
@@ -30,10 +43,6 @@ function Page() {
       }
     }
   }, [id, isInstagram, isAndroid, isIOS]);
-
-  function handleReLaunch() {
-    window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
-  }
 
   if (!isInstagram) {
     return <div></div>;
