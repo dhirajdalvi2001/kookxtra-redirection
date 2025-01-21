@@ -22,7 +22,16 @@ function Page() {
   function handleReLaunch() {
     try {
       if (isAndroid) {
-        window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.kookxtra.kx;end`;
+        // Set up a timeout to detect intent failure
+        const timeout = setTimeout(() => {
+          window.location.href =
+            'https://play.google.com/store/apps/details?id=com.kookxtra.kx';
+        }, 2500); // 2.5 seconds timeout
+
+        // Try to launch the app
+        window.location.href = `intent://www.kookxtra.com/chef/?id=${id}#Intent;scheme=https;package=com.kookxtra.kx;end`;
+
+        return () => clearTimeout(timeout);
       } else if (isIOS) {
         window.location.href = `https://apps.apple.com/tt/app/kookxtra/id1597903577`;
       }
@@ -41,7 +50,7 @@ function Page() {
       handleReLaunch();
     } else {
       if (isAndroid) {
-        window.location.href = `https://play.google.com/store/apps/details?id=com.kookxtra.kx&pli=1`;
+        window.location.href = `https://play.google.com/store/apps/details?id=com.kookxtra.kx`;
       } else if (isIOS) {
         window.location.href = `https://apps.apple.com/tt/app/kookxtra/id1597903577`;
       }
